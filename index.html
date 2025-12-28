@@ -13,23 +13,20 @@
     Toque para ativar a câmera
   </div>
 
-  <!-- Container da câmera -->
-  <div id="camera-container">
+<div id="camera-container">
     <video id="camera-preview" autoplay playsinline></video>
 
-    <!-- Botão de setinha -->
-    <button id="arrow-btn">></button>
+    <!-- Wrapper da setinha e menu -->
+    <div id="menu-wrapper">
+        <button id="arrow-btn">></button>
+        <div id="user-menu" class="hidden">
+            <ul id="user-list"></ul>
+        </div>
+    </div>
 
-    <!-- Botão de tirar foto -->
     <button id="capture-btn">Tirar Foto</button>
-  </div>
+</div>
 
-  <!-- Menu de usuários -->
-  <div id="user-menu" class="hidden">
-    <ul id="user-list">
-      <!-- Usuários serão populados via JS -->
-    </ul>
-  </div>
 
   <script src="app.js"></script>
 </body>
