@@ -8,25 +8,25 @@
 </head>
 <body>
 
-  <!-- Overlay para ativar a câmera -->
+  <!-- Overlay para ativar câmera -->
   <div id="overlay" onclick="startCamera()">
     Toque para ativar a câmera
   </div>
 
-<div id="camera-container">
-    <video id="camera-preview" autoplay playsinline></video>
+  <div id="camera-container">
+      <video id="camera-preview" autoplay playsinline></video>
 
-    <!-- Wrapper da setinha e menu -->
-    <div id="menu-wrapper">
-        <button id="arrow-btn">></button>
-        <div id="user-menu" class="hidden">
-            <ul id="user-list"></ul>
-        </div>
-    </div>
+      <!-- Wrapper da setinha e menu -->
+      <div id="menu-wrapper">
+          <button id="arrow-btn">></button>
+          <div id="user-menu">
+              <ul id="user-list"></ul>
+          </div>
+      </div>
 
-    <button id="capture-btn">Tirar Foto</button>
-</div>
-
+      <!-- Botão de tirar foto -->
+      <button id="capture-btn">Tirar Foto</button>
+  </div>
 
   <script src="app.js"></script>
 </body>
