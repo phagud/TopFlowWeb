@@ -37,6 +37,7 @@ html, body {
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  background: #000;
 }
 
 /* Preview 3:4 centralizado */
@@ -46,6 +47,7 @@ html, body {
   aspect-ratio: 3 / 4;
   background: #000;
   object-fit: cover;
+  z-index: 1;
 }
 
 /* Wrapper da setinha e menu */
@@ -55,6 +57,7 @@ html, body {
   left: 10px;
   display: flex;
   align-items: flex-start;
+  z-index: 20;
 }
 
 /* Botão de setinha */
@@ -80,7 +83,7 @@ html, body {
   margin-left: 10px;
   transform: translateX(-220px); /* escondido inicialmente */
   transition: transform 0.3s ease;
-  z-index: 20;
+  z-index: 25;
 }
 
 #user-menu.visible {
@@ -95,3 +98,21 @@ html, body {
 }
 
 #user-list li.selected {
+  background: rgba(255,255,255,0.2);
+}
+
+/* Botão de tirar foto */
+#capture-btn {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 20px;
+  padding: 12px 25px;
+  border: none;
+  border-radius: 15px;
+  background: #00aaff;
+  color: white;
+  cursor: pointer;
+  z-index: 30;
+}
