@@ -80,3 +80,15 @@ arrowBtn.addEventListener('click', toggleMenu);
 
 // inicialização
 populateUsers();
+
+const menuWrapper = document.getElementById('menu-wrapper');
+const arrowBtn = document.getElementById('arrow-btn');
+const userMenu = document.getElementById('user-menu');
+
+let menuOpen = false;
+function toggleMenu() { ... }
+arrowBtn.addEventListener('click', toggleMenu);
+
+let touchStartX = 0;
+userMenu.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; });
+userMenu.addEventListener('touchmove', e => { ... });
