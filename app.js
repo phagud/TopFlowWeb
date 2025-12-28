@@ -10,7 +10,7 @@ const arrowBtn = document.getElementById('arrow-btn');
 const userMenu = document.getElementById('user-menu');
 const userListEl = document.getElementById('user-list');
 
-const users = ["Alice", "Bob", "Carol", "Dave"]; // usuários exemplares
+const users = ["Joao", "Bibbibib", "Carol", "Dave"]; // exemplos
 
 // Popula a lista de usuários
 function populateUsers() {
@@ -91,8 +91,6 @@ captureBtn.addEventListener('click', async () => {
   if(navigator.share){
     const file = new File([blob], "foto.jpg", { type: blob.type });
     navigator.share({ files: [file], text: users[selectedUserIndex] }).catch(console.log);
-  } else {
-    console.log("Compartilhar não suportado");
   }
 
   // Copiar texto para clipboard
