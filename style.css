@@ -48,52 +48,46 @@ html, body {
   object-fit: cover;
 }
 
-/* Botão de setinha no topo */
-#arrow-btn {
+/* Wrapper da setinha e menu */
+#menu-wrapper {
   position: absolute;
   top: 10px;
   left: 10px;
+  display: flex;
+  align-items: flex-start;
+}
+
+/* Botão de setinha */
+#arrow-btn {
   font-size: 32px;
   background: rgba(255,255,255,0.3);
   border: none;
   border-radius: 8px;
   padding: 5px 10px;
   cursor: pointer;
+  z-index: 30;
 }
 
-/* Botão de tirar foto */
-#capture-btn {
-  position: absolute;
-  bottom: 20px;
-  left: 50%;
-  transform: translateX(-50%);
-  font-size: 20px;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 12px;
-  background: #00aaff;
-  color: white;
-  cursor: pointer;
-}
-
-/* Menu de usuários */
+/* Menu lateral deslizando */
 #user-menu {
-  position: absolute;
-  top: 0;
-  right: 0;
   width: 200px;
-  max-height: 100%;
-  background: rgba(0,0,0,0.8);
+  max-height: 80vh;
+  background: rgba(0,0,0,0.9);
   color: white;
   overflow-y: auto;
-  z-index: 20;
+  border-radius: 8px;
   padding: 10px;
+  margin-left: 10px;
+  transform: translateX(-220px); /* escondido inicialmente */
+  transition: transform 0.3s ease;
+  z-index: 20;
 }
 
-.hidden {
-  display: none;
+#user-menu.visible {
+  transform: translateX(0);
 }
 
+/* Lista de usuários */
 #user-list li {
   padding: 10px;
   border-bottom: 1px solid rgba(255,255,255,0.3);
@@ -101,5 +95,3 @@ html, body {
 }
 
 #user-list li.selected {
-  background: rgba(255,255,255,0.2);
-}
