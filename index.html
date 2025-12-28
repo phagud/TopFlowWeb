@@ -1,28 +1,34 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-  <title>Câmera Rápida</title>
-
-  <!-- PWA -->
-  <link rel="manifest" href="manifest.json" />
-  <meta name="theme-color" content="#000000" />
-
-  <link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Camera App</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-  <div id="app">
-    <video id="video" autoplay playsinline></video>
-    <canvas id="canvas"></canvas>
+  <!-- Overlay para ativar a câmera -->
+  <div id="overlay" onclick="startCamera()">
+    Toque para ativar a câmera
+  </div>
 
-    <div class="controls">
-      <button id="start">📸 Abrir câmera</button>
-      <button id="snap">Tirar foto</button>
-      <button id="share">Compartilhar2</button>
-    </div>
+  <!-- Container da câmera -->
+  <div id="camera-container">
+    <video id="camera-preview" autoplay playsinline></video>
+
+    <!-- Botão de setinha -->
+    <button id="arrow-btn">></button>
+
+    <!-- Botão de tirar foto -->
+    <button id="capture-btn">Tirar Foto</button>
+  </div>
+
+  <!-- Menu de usuários -->
+  <div id="user-menu" class="hidden">
+    <ul id="user-list">
+      <!-- Usuários serão populados via JS -->
+    </ul>
   </div>
 
   <script src="app.js"></script>
