@@ -1,16 +1,18 @@
 let stream;
 let selectedUserIndex = 0;
+let menuOpen = false;
+let touchStartX = 0;
 
 const video = document.getElementById('camera-preview');
 const overlay = document.getElementById('overlay');
-const arrowBtn = document.getElementById('arrow-btn');
 const captureBtn = document.getElementById('capture-btn');
+const arrowBtn = document.getElementById('arrow-btn');
 const userMenu = document.getElementById('user-menu');
 const userListEl = document.getElementById('user-list');
 
 const users = ["Alice", "Bob", "Carol", "Dave"]; // usuários exemplares
 
-// popula a lista de usuários
+// Popula a lista de usuários
 function populateUsers() {
   userListEl.innerHTML = "";
   users.forEach((u, i) => {
@@ -22,21 +24,48 @@ function populateUsers() {
   });
 }
 
+// Seleciona usuário
 function selectUser(index) {
   selectedUserIndex = index;
   populateUsers();
-  hideMenu();
+  closeMenu();
 }
 
-function hideMenu() {
-  userMenu.classList.add('hidden');
+// Abrir/fechar menu lateral
+function openMenu() {
+  menuOpen = true;
+  userMenu.classList.add('visible');
+  arrowBtn.textContent = "<";
+}
+
+function closeMenu() {
+  menuOpen = false;
+  userMenu.classList.remove('visible');
+  arrowBtn.textContent = ">";
 }
 
 function toggleMenu() {
-  userMenu.classList.toggle('hidden');
+  if(menuOpen) closeMenu();
+  else openMenu();
 }
 
-// iniciar câmera
+// Evento da setinha
+arrowBtn.addEventListener('click', toggleMenu);
+
+// Swipe touch para fechar
+userMenu.addEventListener('touchstart', e => {
+  touchStartX = e.touches[0].clientX;
+});
+
+userMenu.addEventListener('touchmove', e => {
+  const touchX = e.touches[0].clientX;
+  const deltaX = touchX - touchStartX;
+  if(deltaX > 50){ // deslizou para direita
+    closeMenu();
+  }
+});
+
+// Iniciar câmera
 async function startCamera() {
   overlay.style.display = 'none';
   try {
@@ -47,7 +76,7 @@ async function startCamera() {
   }
 }
 
-// tirar foto
+// Tirar foto
 captureBtn.addEventListener('click', async () => {
   if(!stream) return alert("Ative a câmera primeiro");
 
@@ -58,37 +87,23 @@ captureBtn.addEventListener('click', async () => {
 
   const blob = await new Promise(resolve => canvas.toBlob(resolve, 'image/jpeg'));
 
-  // compartilhar (Web Share API)
-  if(navigator.share) {
+  // Compartilhar (Web Share API)
+  if(navigator.share){
     const file = new File([blob], "foto.jpg", { type: blob.type });
     navigator.share({ files: [file], text: users[selectedUserIndex] }).catch(console.log);
   } else {
     console.log("Compartilhar não suportado");
   }
 
-  // copiar texto para clipboard
+  // Copiar texto para clipboard
   navigator.clipboard.writeText(users[selectedUserIndex]).catch(console.log);
 
-  // remover usuário da lista
+  // Remover usuário da lista
   users.splice(selectedUserIndex, 1);
   if(users.length > 0) selectedUserIndex = users.length - 1;
   else selectedUserIndex = -1;
   populateUsers();
 });
 
-arrowBtn.addEventListener('click', toggleMenu);
-
-// inicialização
+// Inicialização
 populateUsers();
-
-const menuWrapper = document.getElementById('menu-wrapper');
-const arrowBtn = document.getElementById('arrow-btn');
-const userMenu = document.getElementById('user-menu');
-
-let menuOpen = false;
-function toggleMenu() { ... }
-arrowBtn.addEventListener('click', toggleMenu);
-
-let touchStartX = 0;
-userMenu.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; });
-userMenu.addEventListener('touchmove', e => { ... });
